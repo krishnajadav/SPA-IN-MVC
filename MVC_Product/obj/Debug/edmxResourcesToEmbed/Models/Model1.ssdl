@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EGovernanceDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'EGovernanceDB.dbo.CharacterCertificate' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="CharacterCertificate">
+          <Property Name="Chaid" Type="int" />
+          <Property Name="ResidenceProofAttachment" Type="varchar(max)" />
+          <Property Name="IdentityProofAttachment" Type="varchar(max)" />
+          <Property Name="PoliceNoc" Type="varchar(max)" />
+          <Property Name="YearsOfResidence" Type="varchar(max)" />
+          <Property Name="WhyNeedThisDocumet" Type="varchar(max)" />
+          <Property Name="Applydt" Type="date" />
+          <Property Name="Issuedt" Type="date" />
+          <Property Name="validity" Type="date" />
+          <Property Name="Remark" Type="varchar(max)" />
+          <Property Name="citizenid" Type="int" />
+          <Property Name="verify" Type="bit" />
+          <Property Name="statuscode" Type="varchar" MaxLength="20" />
+        </EntityType>-->
+  <EntityType Name="Collector">
+    <Key>
+      <PropertyRef Name="coid" />
+    </Key>
+    <Property Name="coid" Type="int" Nullable="false" />
+    <Property Name="cofname" Type="varchar" MaxLength="20" />
+    <Property Name="comname" Type="varchar" MaxLength="20" />
+    <Property Name="colname" Type="varchar" MaxLength="20" />
+    <Property Name="comno" Type="char" MaxLength="10" />
+    <Property Name="coemail" Type="varchar" MaxLength="35" />
+    <Property Name="copass" Type="varchar" MaxLength="30" />
+    <Property Name="disid" Type="int" />
+    <Property Name="maid" Type="int" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="disid" />
+    </Key>
+    <Property Name="disid" Type="int" Nullable="false" />
+    <Property Name="disname" Type="varchar" MaxLength="40" />
+    <Property Name="maid" Type="int" />
+  </EntityType>
+  <EntityType Name="Documents">
+    <Key>
+      <PropertyRef Name="docid" />
+    </Key>
+    <Property Name="docid" Type="int" Nullable="false" />
+    <Property Name="docname" Type="varchar" MaxLength="50" />
+    <Property Name="docdetail" Type="varchar(max)" />
+    <Property Name="maid" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'EGovernanceDB.dbo.DomisileCertificate' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DomisileCertificate">
+          <Property Name="Domid" Type="int" />
+          <Property Name="ResidenceProofAttachment" Type="varchar(max)" />
+          <Property Name="IdentityProofAttachment" Type="varchar(max)" />
+          <Property Name="TenYearsRecords" Type="varchar(max)" />
+          <Property Name="PedhinamuByTalati" Type="varchar(max)" />
+          <Property Name="PoliceNoc" Type="varchar(max)" />
+          <Property Name="YearsOfResidence" Type="varchar(max)" />
+          <Property Name="WhyNeedThisDocumet" Type="varchar(max)" />
+          <Property Name="Applydt" Type="date" />
+          <Property Name="Issuedt" Type="date" />
+          <Property Name="validity" Type="date" />
+          <Property Name="Remark" Type="varchar(max)" />
+          <Property Name="citizenid" Type="int" />
+          <Property Name="verify" Type="bit" />
+          <Property Name="statuscode" Type="varchar" MaxLength="20" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'EGovernanceDB.dbo.IncomeCertificate' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="IncomeCertificate">
+          <Property Name="Incid" Type="int" />
+          <Property Name="ResidenceProofAttachment" Type="varchar(max)" />
+          <Property Name="IdentityProofAttachment" Type="varchar(max)" />
+          <Property Name="IncomeProof" Type="varchar(max)" />
+          <Property Name="AnnualIncome" Type="varchar(max)" />
+          <Property Name="WorkAddress" Type="varchar(max)" />
+          <Property Name="OtherFamilyIncome" Type="varchar(max)" />
+          <Property Name="Applydt" Type="date" />
+          <Property Name="Issuedt" Type="date" />
+          <Property Name="validity" Type="date" />
+          <Property Name="Remark" Type="varchar(max)" />
+          <Property Name="citizenid" Type="int" />
+          <Property Name="verify" Type="bit" />
+          <Property Name="statuscode" Type="varchar" MaxLength="20" />
+        </EntityType>-->
+  <EntityType Name="MainAdmin">
+    <Key>
+      <PropertyRef Name="maid" />
+    </Key>
+    <Property Name="maid" Type="int" Nullable="false" />
+    <Property Name="mafname" Type="varchar" MaxLength="20" />
+    <Property Name="mamname" Type="varchar" MaxLength="20" />
+    <Property Name="malname" Type="varchar" MaxLength="20" />
+    <Property Name="mamno" Type="char" MaxLength="10" />
+    <Property Name="maemail" Type="varchar" MaxLength="35" />
+    <Property Name="mapass" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Mamlatdar">
+    <Key>
+      <PropertyRef Name="mltid" />
+    </Key>
+    <Property Name="mltid" Type="int" Nullable="false" />
+    <Property Name="mltfname" Type="varchar" MaxLength="20" />
+    <Property Name="mltmname" Type="varchar" MaxLength="20" />
+    <Property Name="mltlname" Type="varchar" MaxLength="20" />
+    <Property Name="mltmno" Type="char" MaxLength="10" />
+    <Property Name="mltemail" Type="varchar" MaxLength="35" />
+    <Property Name="mltpass" Type="varchar" MaxLength="30" />
+    <Property Name="talid" Type="int" />
+    <Property Name="coid" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'EGovernanceDB.dbo.NonCreamyLayerCertificate' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="NonCreamyLayerCertificate">
+          <Property Name="Nonid" Type="int" />
+          <Property Name="ResidenceProofAttachment" Type="varchar(max)" />
+          <Property Name="IdentityProofAttachment" Type="varchar(max)" />
+          <Property Name="SchoolLeavingCertificate" Type="varchar(max)" />
+          <Property Name="FathersSchoolLeavingCertificate" Type="varchar(max)" />
+          <Property Name="YearsOfResidence" Type="varchar(max)" />
+          <Property Name="WhyNeedThisDocumet" Type="varchar(max)" />
+          <Property Name="SubCast" Type="varchar(max)" />
+          <Property Name="Applydt" Type="date" />
+          <Property Name="Issuedt" Type="date" />
+          <Property Name="validity" Type="date" />
+          <Property Name="Remark" Type="varchar(max)" />
+          <Property Name="citizenid" Type="int" />
+          <Property Name="verify" Type="bit" />
+          <Property Name="statuscode" Type="varchar" MaxLength="20" />
+        </EntityType>-->
+  <EntityType Name="RegistrationUsers">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="int" Nullable="false" />
+    <Property Name="rfname" Type="varchar" MaxLength="30" />
+    <Property Name="rmname" Type="varchar" MaxLength="30" />
+    <Property Name="rlname" Type="varchar" MaxLength="30" />
+    <Property Name="rgender" Type="varchar" MaxLength="10" />
+    <Property Name="rdob" Type="char" MaxLength="10" />
+    <Property Name="radhno" Type="char" MaxLength="12" />
+    <Property Name="rmno" Type="char" MaxLength="10" />
+    <Property Name="remailid" Type="varchar" MaxLength="50" />
+    <Property Name="rpass" Type="varchar(max)" />
+    <Property Name="radres" Type="varchar(max)" />
+    <Property Name="macaddress" Type="varchar" MaxLength="17" />
+    <Property Name="browsername" Type="varchar" MaxLength="15" />
+    <Property Name="registerdatetime" Type="datetime" />
+    <Property Name="vlid" Type="int" />
+  </EntityType>
+  <EntityType Name="ServiceDetails">
+    <Key>
+      <PropertyRef Name="srdid" />
+    </Key>
+    <Property Name="srdid" Type="int" Nullable="false" />
+    <Property Name="srdname" Type="varchar" MaxLength="30" />
+    <Property Name="srddescription" Type="varchar" MaxLength="700" />
+    <Property Name="srddocumentids" Type="varchar" MaxLength="200" />
+    <Property Name="srdexinfoids" Type="varchar" MaxLength="200" />
+    <Property Name="maid" Type="int" />
+  </EntityType>
+  <EntityType Name="ServiceExinfo">
+    <Key>
+      <PropertyRef Name="sreid" />
+    </Key>
+    <Property Name="sreid" Type="int" Nullable="false" />
+    <Property Name="srename" Type="varchar" MaxLength="30" />
+    <Property Name="maid" Type="int" />
+  </EntityType>
+  <EntityType Name="Talati">
+    <Key>
+      <PropertyRef Name="tltid" />
+    </Key>
+    <Property Name="tltid" Type="int" Nullable="false" />
+    <Property Name="tltfname" Type="varchar" MaxLength="20" />
+    <Property Name="tltmname" Type="varchar" MaxLength="20" />
+    <Property Name="tltlname" Type="varchar" MaxLength="20" />
+    <Property Name="tltmno" Type="char" MaxLength="10" />
+    <Property Name="tltemail" Type="varchar" MaxLength="35" />
+    <Property Name="tltpass" Type="varchar" MaxLength="30" />
+    <Property Name="vlid" Type="int" />
+    <Property Name="mltid" Type="int" />
+  </EntityType>
+  <EntityType Name="Taluka">
+    <Key>
+      <PropertyRef Name="talid" />
+    </Key>
+    <Property Name="talid" Type="int" Nullable="false" />
+    <Property Name="talname" Type="varchar" MaxLength="40" />
+    <Property Name="coid" Type="int" />
+  </EntityType>
+  <EntityType Name="Village">
+    <Key>
+      <PropertyRef Name="vlid" />
+    </Key>
+    <Property Name="vlid" Type="int" Nullable="false" />
+    <Property Name="vlname" Type="varchar" MaxLength="40" />
+    <Property Name="mltid" Type="int" />
+  </EntityType>
+  <Association Name="FK__Collector__disid__276EDEB3">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="Collector" Type="Self.Collector" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="disid" />
+      </Principal>
+      <Dependent Role="Collector">
+        <PropertyRef Name="disid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Collector__maid__286302EC">
+    <End Role="MainAdmin" Type="Self.MainAdmin" Multiplicity="0..1" />
+    <End Role="Collector" Type="Self.Collector" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainAdmin">
+        <PropertyRef Name="maid" />
+      </Principal>
+      <Dependent Role="Collector">
+        <PropertyRef Name="maid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__District__maid__29572725">
+    <End Role="MainAdmin" Type="Self.MainAdmin" Multiplicity="0..1" />
+    <End Role="District" Type="Self.District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainAdmin">
+        <PropertyRef Name="maid" />
+      </Principal>
+      <Dependent Role="District">
+        <PropertyRef Name="maid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documents__maid__2A4B4B5E">
+    <End Role="MainAdmin" Type="Self.MainAdmin" Multiplicity="0..1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainAdmin">
+        <PropertyRef Name="maid" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="maid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mamlatdar__coid__2B3F6F97">
+    <End Role="Collector" Type="Self.Collector" Multiplicity="0..1" />
+    <End Role="Mamlatdar" Type="Self.Mamlatdar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Collector">
+        <PropertyRef Name="coid" />
+      </Principal>
+      <Dependent Role="Mamlatdar">
+        <PropertyRef Name="coid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mamlatdar__talid__2C3393D0">
+    <End Role="Taluka" Type="Self.Taluka" Multiplicity="0..1" />
+    <End Role="Mamlatdar" Type="Self.Mamlatdar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Taluka">
+        <PropertyRef Name="talid" />
+      </Principal>
+      <Dependent Role="Mamlatdar">
+        <PropertyRef Name="talid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ServiceDet__maid__2D27B809">
+    <End Role="MainAdmin" Type="Self.MainAdmin" Multiplicity="0..1" />
+    <End Role="ServiceDetails" Type="Self.ServiceDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainAdmin">
+        <PropertyRef Name="maid" />
+      </Principal>
+      <Dependent Role="ServiceDetails">
+        <PropertyRef Name="maid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ServiceExi__maid__2E1BDC42">
+    <End Role="MainAdmin" Type="Self.MainAdmin" Multiplicity="0..1" />
+    <End Role="ServiceExinfo" Type="Self.ServiceExinfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainAdmin">
+        <PropertyRef Name="maid" />
+      </Principal>
+      <Dependent Role="ServiceExinfo">
+        <PropertyRef Name="maid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Talati__mltid__2F10007B">
+    <End Role="Mamlatdar" Type="Self.Mamlatdar" Multiplicity="0..1" />
+    <End Role="Talati" Type="Self.Talati" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mamlatdar">
+        <PropertyRef Name="mltid" />
+      </Principal>
+      <Dependent Role="Talati">
+        <PropertyRef Name="mltid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Talati__vlid__300424B4">
+    <End Role="Village" Type="Self.Village" Multiplicity="0..1" />
+    <End Role="Talati" Type="Self.Talati" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Village">
+        <PropertyRef Name="vlid" />
+      </Principal>
+      <Dependent Role="Talati">
+        <PropertyRef Name="vlid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Taluka__coid__30F848ED">
+    <End Role="Collector" Type="Self.Collector" Multiplicity="0..1" />
+    <End Role="Taluka" Type="Self.Taluka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Collector">
+        <PropertyRef Name="coid" />
+      </Principal>
+      <Dependent Role="Taluka">
+        <PropertyRef Name="coid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Village__mltid__31EC6D26">
+    <End Role="Mamlatdar" Type="Self.Mamlatdar" Multiplicity="0..1" />
+    <End Role="Village" Type="Self.Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mamlatdar">
+        <PropertyRef Name="mltid" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="mltid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="spCollectorINUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cofname" Type="varchar" Mode="In" />
+    <Parameter Name="comname" Type="varchar" Mode="In" />
+    <Parameter Name="colname" Type="varchar" Mode="In" />
+    <Parameter Name="maid" Type="int" Mode="In" />
+    <Parameter Name="comno" Type="char" Mode="In" />
+    <Parameter Name="coemail" Type="varchar" Mode="In" />
+    <Parameter Name="copass" Type="varchar" Mode="In" />
+    <Parameter Name="disid" Type="int" Mode="In" />
+    <Parameter Name="newcoid" Type="int" Mode="In" />
+    <Parameter Name="newdisid" Type="int" Mode="In" />
+    <Parameter Name="coid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDeleteAllData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TName" Type="varchar" Mode="In" />
+    <Parameter Name="Crit" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spDisJoin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vlid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDistrictINUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="disname" Type="varchar" Mode="In" />
+    <Parameter Name="maid" Type="int" Mode="In" />
+    <Parameter Name="disid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDocumentsINUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="docname" Type="varchar" Mode="In" />
+    <Parameter Name="docdetail" Type="varchar(max)" Mode="In" />
+    <Parameter Name="maid" Type="int" Mode="In" />
+    <Parameter Name="docid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertServiceData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tname" Type="varchar" Mode="In" />
+    <Parameter Name="Crit" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spMamlatdarINUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mltfname" Type="varchar" Mode="In" />
+    <Parameter Name="mltmname" Type="varchar" Mode="In" />
+    <Parameter Name="mltlname" Type="varchar" Mode="In" />
+    <Parameter Name="coid" Type="int" Mode="In" />
+    <Parameter Name="mltmno" Type="char" Mode="In" />
+    <Parameter Name="mltemail" Type="varchar" Mode="In" />
+    <Parameter Name="mltpass" Type="varchar" Mode="In" />
+    <Parameter Name="talid" Type="int" Mode="In" />
+    <Parameter Name="newmltid" Type="int" Mode="In" />
+    <Parameter Name="newtalid" Type="int" Mode="In" />
+    <Parameter Name="mltid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spRegistrationInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="fname" Type="varchar" Mode="In" />
+    <Parameter Name="mname" Type="varchar" Mode="In" />
+    <Parameter Name="lname" Type="varchar" Mode="In" />
+    <Parameter Name="rgender" Type="varchar" Mode="In" />
+    <Parameter Name="dob" Type="varchar" Mode="In" />
+    <Parameter Name="adhno" Type="char" Mode="In" />
+    <Parameter Name="mno" Type="char" Mode="In" />
+    <Parameter Name="emailid" Type="varchar" Mode="In" />
+    <Parameter Name="pass" Type="varchar(max)" Mode="In" />
+    <Parameter Name="adres" Type="varchar(max)" Mode="In" />
+    <Parameter Name="mac" Type="char" Mode="In" />
+    <Parameter Name="browsername" Type="varchar" Mode="In" />
+    <Parameter Name="vlid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spSelectAllData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tname" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spSelectbyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tname" Type="varchar" Mode="In" />
+    <Parameter Name="Crit" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spSelectUserDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="rid" Type="varchar" Mode="In" />
+    <Parameter Name="veri" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spSelectUserServiceInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vlid" Type="varchar" Mode="In" />
+    <Parameter Name="script" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spServiceDetailsINUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="srddescription" Type="varchar(max)" Mode="In" />
+    <Parameter Name="srddocumentids" Type="varchar(max)" Mode="In" />
+    <Parameter Name="srdexinfoids" Type="varchar(max)" Mode="In" />
+    <Parameter Name="srdname" Type="varchar" Mode="In" />
+    <Parameter Name="maid" Type="int" Mode="In" />
+    <Parameter Name="srdid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spServiceExinfoINUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="srename" Type="varchar" Mode="In" />
+    <Parameter Name="maid" Type="int" Mode="In" />
+    <Parameter Name="sreid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spTalatiINUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tltfname" Type="varchar" Mode="In" />
+    <Parameter Name="tltmname" Type="varchar" Mode="In" />
+    <Parameter Name="tltlname" Type="varchar" Mode="In" />
+    <Parameter Name="mltid" Type="int" Mode="In" />
+    <Parameter Name="tltmno" Type="char" Mode="In" />
+    <Parameter Name="tltemail" Type="varchar" Mode="In" />
+    <Parameter Name="tltpass" Type="varchar" Mode="In" />
+    <Parameter Name="vlid" Type="int" Mode="In" />
+    <Parameter Name="newtltid" Type="int" Mode="In" />
+    <Parameter Name="newvlid" Type="int" Mode="In" />
+    <Parameter Name="tltid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spTalukaINUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="talname" Type="varchar" Mode="In" />
+    <Parameter Name="coid" Type="int" Mode="In" />
+    <Parameter Name="talid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spupdateservices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Tname" Type="varchar" Mode="In" />
+    <Parameter Name="rid" Type="varchar" Mode="In" />
+    <Parameter Name="remark" Type="varchar(max)" Mode="In" />
+    <Parameter Name="statuscode" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spVillageINUP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vlname" Type="varchar" Mode="In" />
+    <Parameter Name="mltid" Type="int" Mode="In" />
+    <Parameter Name="vlid" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="EGovernanceDBModelStoreContainer">
+    <EntitySet Name="Collector" EntityType="Self.Collector" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MainAdmin" EntityType="Self.MainAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mamlatdar" EntityType="Self.Mamlatdar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegistrationUsers" EntityType="Self.RegistrationUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceDetails" EntityType="Self.ServiceDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceExinfo" EntityType="Self.ServiceExinfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Talati" EntityType="Self.Talati" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Taluka" EntityType="Self.Taluka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Village" EntityType="Self.Village" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Collector__disid__276EDEB3" Association="Self.FK__Collector__disid__276EDEB3">
+      <End Role="District" EntitySet="District" />
+      <End Role="Collector" EntitySet="Collector" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Collector__maid__286302EC" Association="Self.FK__Collector__maid__286302EC">
+      <End Role="MainAdmin" EntitySet="MainAdmin" />
+      <End Role="Collector" EntitySet="Collector" />
+    </AssociationSet>
+    <AssociationSet Name="FK__District__maid__29572725" Association="Self.FK__District__maid__29572725">
+      <End Role="MainAdmin" EntitySet="MainAdmin" />
+      <End Role="District" EntitySet="District" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documents__maid__2A4B4B5E" Association="Self.FK__Documents__maid__2A4B4B5E">
+      <End Role="MainAdmin" EntitySet="MainAdmin" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mamlatdar__coid__2B3F6F97" Association="Self.FK__Mamlatdar__coid__2B3F6F97">
+      <End Role="Collector" EntitySet="Collector" />
+      <End Role="Mamlatdar" EntitySet="Mamlatdar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mamlatdar__talid__2C3393D0" Association="Self.FK__Mamlatdar__talid__2C3393D0">
+      <End Role="Taluka" EntitySet="Taluka" />
+      <End Role="Mamlatdar" EntitySet="Mamlatdar" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ServiceDet__maid__2D27B809" Association="Self.FK__ServiceDet__maid__2D27B809">
+      <End Role="MainAdmin" EntitySet="MainAdmin" />
+      <End Role="ServiceDetails" EntitySet="ServiceDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ServiceExi__maid__2E1BDC42" Association="Self.FK__ServiceExi__maid__2E1BDC42">
+      <End Role="MainAdmin" EntitySet="MainAdmin" />
+      <End Role="ServiceExinfo" EntitySet="ServiceExinfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Talati__mltid__2F10007B" Association="Self.FK__Talati__mltid__2F10007B">
+      <End Role="Mamlatdar" EntitySet="Mamlatdar" />
+      <End Role="Talati" EntitySet="Talati" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Talati__vlid__300424B4" Association="Self.FK__Talati__vlid__300424B4">
+      <End Role="Village" EntitySet="Village" />
+      <End Role="Talati" EntitySet="Talati" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Taluka__coid__30F848ED" Association="Self.FK__Taluka__coid__30F848ED">
+      <End Role="Collector" EntitySet="Collector" />
+      <End Role="Taluka" EntitySet="Taluka" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Village__mltid__31EC6D26" Association="Self.FK__Village__mltid__31EC6D26">
+      <End Role="Mamlatdar" EntitySet="Mamlatdar" />
+      <End Role="Village" EntitySet="Village" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestMVCModelStoreContainer" CdmEntityContainer="TestMVCEntities">
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="TestMVCModel.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="psupply" ColumnName="psupply" />
+          <ScalarProperty Name="pcname" ColumnName="pcname" />
+          <ScalarProperty Name="pisdemand" ColumnName="pisdemand" />
+          <ScalarProperty Name="pimage" ColumnName="pimage" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="pname" ColumnName="pname" />
+          <ScalarProperty Name="pprice" ColumnName="pprice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="InUPProduct" FunctionName="TestMVCModel.Store.InUPProduct" />
+    <EntitySetMapping Name="product_category">
+      <EntityTypeMapping TypeName="TestMVCModel.product_category">
+        <MappingFragment StoreEntitySet="product_category">
+          <ScalarProperty Name="pcname" ColumnName="pcname" />
+          <ScalarProperty Name="pcid" ColumnName="pcid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="InUPProductMain" FunctionName="TestMVCModel.Store.InUPProductMain" />
+  </EntityContainerMapping>
+</Mapping>

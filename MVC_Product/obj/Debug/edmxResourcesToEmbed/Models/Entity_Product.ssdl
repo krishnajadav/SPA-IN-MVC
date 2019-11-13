@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="int" Nullable="false" />
+    <Property Name="pname" Type="varchar" MaxLength="30" />
+    <Property Name="pprice" Type="decimal" Precision="5" Scale="0" />
+    <Property Name="pimage" Type="varchar" MaxLength="30" />
+    <Property Name="pisdemand" Type="bit" />
+    <Property Name="pcname" Type="varchar" MaxLength="30" />
+    <Property Name="psupply" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="product_category">
+    <Key>
+      <PropertyRef Name="pcid" />
+    </Key>
+    <Property Name="pcid" Type="int" Nullable="false" />
+    <Property Name="pcname" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <Function Name="InUPProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pid" Type="int" Mode="In" />
+    <Parameter Name="pname" Type="varchar" Mode="In" />
+    <Parameter Name="pprice" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="InUPProductMain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pid" Type="int" Mode="In" />
+    <Parameter Name="pname" Type="varchar" Mode="In" />
+    <Parameter Name="pprice" Type="decimal" Mode="In" />
+    <Parameter Name="pimage" Type="varchar" Mode="In" />
+    <Parameter Name="pcname" Type="varchar" Mode="In" />
+    <Parameter Name="pisdemand" Type="bit" Mode="In" />
+    <Parameter Name="psupply" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="TestMVCModelStoreContainer">
+    <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="product_category" EntityType="Self.product_category" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

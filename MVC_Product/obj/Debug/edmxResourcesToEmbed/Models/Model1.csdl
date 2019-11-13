@@ -1,0 +1,502 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EGovernanceDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Collector">
+    <Key>
+      <PropertyRef Name="coid" />
+    </Key>
+    <Property Name="coid" Type="Int32" Nullable="false" />
+    <Property Name="cofname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="comname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="colname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="comno" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="coemail" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="copass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="disid" Type="Int32" />
+    <Property Name="maid" Type="Int32" />
+    <NavigationProperty Name="District" Relationship="Self.FK__Collector__disid__276EDEB3" FromRole="Collector" ToRole="District" />
+    <NavigationProperty Name="MainAdmin" Relationship="Self.FK__Collector__maid__286302EC" FromRole="Collector" ToRole="MainAdmin" />
+    <NavigationProperty Name="Mamlatdars" Relationship="Self.FK__Mamlatdar__coid__2B3F6F97" FromRole="Collector" ToRole="Mamlatdar" />
+    <NavigationProperty Name="Talukas" Relationship="Self.FK__Taluka__coid__30F848ED" FromRole="Collector" ToRole="Taluka" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="disid" />
+    </Key>
+    <Property Name="disid" Type="Int32" Nullable="false" />
+    <Property Name="disname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="maid" Type="Int32" />
+    <NavigationProperty Name="Collectors" Relationship="Self.FK__Collector__disid__276EDEB3" FromRole="District" ToRole="Collector" />
+    <NavigationProperty Name="MainAdmin" Relationship="Self.FK__District__maid__29572725" FromRole="District" ToRole="MainAdmin" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="docid" />
+    </Key>
+    <Property Name="docid" Type="Int32" Nullable="false" />
+    <Property Name="docname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="docdetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="maid" Type="Int32" />
+    <NavigationProperty Name="MainAdmin" Relationship="Self.FK__Documents__maid__2A4B4B5E" FromRole="Documents" ToRole="MainAdmin" />
+  </EntityType>
+  <EntityType Name="MainAdmin">
+    <Key>
+      <PropertyRef Name="maid" />
+    </Key>
+    <Property Name="maid" Type="Int32" Nullable="false" />
+    <Property Name="mafname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mamname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="malname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mamno" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="maemail" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="mapass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Collectors" Relationship="Self.FK__Collector__maid__286302EC" FromRole="MainAdmin" ToRole="Collector" />
+    <NavigationProperty Name="Districts" Relationship="Self.FK__District__maid__29572725" FromRole="MainAdmin" ToRole="District" />
+    <NavigationProperty Name="Documents" Relationship="Self.FK__Documents__maid__2A4B4B5E" FromRole="MainAdmin" ToRole="Documents" />
+    <NavigationProperty Name="ServiceDetails" Relationship="Self.FK__ServiceDet__maid__2D27B809" FromRole="MainAdmin" ToRole="ServiceDetails" />
+    <NavigationProperty Name="ServiceExinfoes" Relationship="Self.FK__ServiceExi__maid__2E1BDC42" FromRole="MainAdmin" ToRole="ServiceExinfo" />
+  </EntityType>
+  <EntityType Name="Mamlatdar">
+    <Key>
+      <PropertyRef Name="mltid" />
+    </Key>
+    <Property Name="mltid" Type="Int32" Nullable="false" />
+    <Property Name="mltfname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mltmname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mltlname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mltmno" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="mltemail" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="mltpass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="talid" Type="Int32" />
+    <Property Name="coid" Type="Int32" />
+    <NavigationProperty Name="Collector" Relationship="Self.FK__Mamlatdar__coid__2B3F6F97" FromRole="Mamlatdar" ToRole="Collector" />
+    <NavigationProperty Name="Taluka" Relationship="Self.FK__Mamlatdar__talid__2C3393D0" FromRole="Mamlatdar" ToRole="Taluka" />
+    <NavigationProperty Name="Talatis" Relationship="Self.FK__Talati__mltid__2F10007B" FromRole="Mamlatdar" ToRole="Talati" />
+    <NavigationProperty Name="Villages" Relationship="Self.FK__Village__mltid__31EC6D26" FromRole="Mamlatdar" ToRole="Village" />
+  </EntityType>
+  <EntityType Name="RegistrationUser">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" />
+    <Property Name="rfname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="rmname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="rlname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="rgender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="rdob" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="radhno" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+    <Property Name="rmno" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="remailid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="rpass" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="radres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="macaddress" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+    <Property Name="browsername" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="registerdatetime" Type="DateTime" Precision="3" />
+    <Property Name="vlid" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ServiceDetail">
+    <Key>
+      <PropertyRef Name="srdid" />
+    </Key>
+    <Property Name="srdid" Type="Int32" Nullable="false" />
+    <Property Name="srdname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="srddescription" Type="String" MaxLength="700" FixedLength="false" Unicode="false" />
+    <Property Name="srddocumentids" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="srdexinfoids" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="maid" Type="Int32" />
+    <NavigationProperty Name="MainAdmin" Relationship="Self.FK__ServiceDet__maid__2D27B809" FromRole="ServiceDetails" ToRole="MainAdmin" />
+  </EntityType>
+  <EntityType Name="ServiceExinfo">
+    <Key>
+      <PropertyRef Name="sreid" />
+    </Key>
+    <Property Name="sreid" Type="Int32" Nullable="false" />
+    <Property Name="srename" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="maid" Type="Int32" />
+    <NavigationProperty Name="MainAdmin" Relationship="Self.FK__ServiceExi__maid__2E1BDC42" FromRole="ServiceExinfo" ToRole="MainAdmin" />
+  </EntityType>
+  <EntityType Name="Talati">
+    <Key>
+      <PropertyRef Name="tltid" />
+    </Key>
+    <Property Name="tltid" Type="Int32" Nullable="false" />
+    <Property Name="tltfname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tltmname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tltlname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tltmno" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="tltemail" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="tltpass" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="vlid" Type="Int32" />
+    <Property Name="mltid" Type="Int32" />
+    <NavigationProperty Name="Mamlatdar" Relationship="Self.FK__Talati__mltid__2F10007B" FromRole="Talati" ToRole="Mamlatdar" />
+    <NavigationProperty Name="Village" Relationship="Self.FK__Talati__vlid__300424B4" FromRole="Talati" ToRole="Village" />
+  </EntityType>
+  <EntityType Name="Taluka">
+    <Key>
+      <PropertyRef Name="talid" />
+    </Key>
+    <Property Name="talid" Type="Int32" Nullable="false" />
+    <Property Name="talname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="coid" Type="Int32" />
+    <NavigationProperty Name="Collector" Relationship="Self.FK__Taluka__coid__30F848ED" FromRole="Taluka" ToRole="Collector" />
+    <NavigationProperty Name="Mamlatdars" Relationship="Self.FK__Mamlatdar__talid__2C3393D0" FromRole="Taluka" ToRole="Mamlatdar" />
+  </EntityType>
+  <EntityType Name="Village">
+    <Key>
+      <PropertyRef Name="vlid" />
+    </Key>
+    <Property Name="vlid" Type="Int32" Nullable="false" />
+    <Property Name="vlname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="mltid" Type="Int32" />
+    <NavigationProperty Name="Mamlatdar" Relationship="Self.FK__Village__mltid__31EC6D26" FromRole="Village" ToRole="Mamlatdar" />
+    <NavigationProperty Name="Talatis" Relationship="Self.FK__Talati__vlid__300424B4" FromRole="Village" ToRole="Talati" />
+  </EntityType>
+  <Association Name="FK__Collector__disid__276EDEB3">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="Collector" Type="Self.Collector" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="disid" />
+      </Principal>
+      <Dependent Role="Collector">
+        <PropertyRef Name="disid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Collector__maid__286302EC">
+    <End Role="MainAdmin" Type="Self.MainAdmin" Multiplicity="0..1" />
+    <End Role="Collector" Type="Self.Collector" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainAdmin">
+        <PropertyRef Name="maid" />
+      </Principal>
+      <Dependent Role="Collector">
+        <PropertyRef Name="maid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mamlatdar__coid__2B3F6F97">
+    <End Role="Collector" Type="Self.Collector" Multiplicity="0..1" />
+    <End Role="Mamlatdar" Type="Self.Mamlatdar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Collector">
+        <PropertyRef Name="coid" />
+      </Principal>
+      <Dependent Role="Mamlatdar">
+        <PropertyRef Name="coid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Taluka__coid__30F848ED">
+    <End Role="Collector" Type="Self.Collector" Multiplicity="0..1" />
+    <End Role="Taluka" Type="Self.Taluka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Collector">
+        <PropertyRef Name="coid" />
+      </Principal>
+      <Dependent Role="Taluka">
+        <PropertyRef Name="coid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__District__maid__29572725">
+    <End Role="MainAdmin" Type="Self.MainAdmin" Multiplicity="0..1" />
+    <End Role="District" Type="Self.District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainAdmin">
+        <PropertyRef Name="maid" />
+      </Principal>
+      <Dependent Role="District">
+        <PropertyRef Name="maid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documents__maid__2A4B4B5E">
+    <End Role="MainAdmin" Type="Self.MainAdmin" Multiplicity="0..1" />
+    <End Role="Documents" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainAdmin">
+        <PropertyRef Name="maid" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="maid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ServiceDet__maid__2D27B809">
+    <End Role="MainAdmin" Type="Self.MainAdmin" Multiplicity="0..1" />
+    <End Role="ServiceDetails" Type="Self.ServiceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainAdmin">
+        <PropertyRef Name="maid" />
+      </Principal>
+      <Dependent Role="ServiceDetails">
+        <PropertyRef Name="maid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ServiceExi__maid__2E1BDC42">
+    <End Role="MainAdmin" Type="Self.MainAdmin" Multiplicity="0..1" />
+    <End Role="ServiceExinfo" Type="Self.ServiceExinfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainAdmin">
+        <PropertyRef Name="maid" />
+      </Principal>
+      <Dependent Role="ServiceExinfo">
+        <PropertyRef Name="maid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mamlatdar__talid__2C3393D0">
+    <End Role="Taluka" Type="Self.Taluka" Multiplicity="0..1" />
+    <End Role="Mamlatdar" Type="Self.Mamlatdar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Taluka">
+        <PropertyRef Name="talid" />
+      </Principal>
+      <Dependent Role="Mamlatdar">
+        <PropertyRef Name="talid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Talati__mltid__2F10007B">
+    <End Role="Mamlatdar" Type="Self.Mamlatdar" Multiplicity="0..1" />
+    <End Role="Talati" Type="Self.Talati" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mamlatdar">
+        <PropertyRef Name="mltid" />
+      </Principal>
+      <Dependent Role="Talati">
+        <PropertyRef Name="mltid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Village__mltid__31EC6D26">
+    <End Role="Mamlatdar" Type="Self.Mamlatdar" Multiplicity="0..1" />
+    <End Role="Village" Type="Self.Village" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mamlatdar">
+        <PropertyRef Name="mltid" />
+      </Principal>
+      <Dependent Role="Village">
+        <PropertyRef Name="mltid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Talati__vlid__300424B4">
+    <End Role="Village" Type="Self.Village" Multiplicity="0..1" />
+    <End Role="Talati" Type="Self.Talati" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Village">
+        <PropertyRef Name="vlid" />
+      </Principal>
+      <Dependent Role="Talati">
+        <PropertyRef Name="vlid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EGovernanceDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Collectors" EntityType="Self.Collector" />
+    <EntitySet Name="Districts" EntityType="Self.District" />
+    <EntitySet Name="Documents" EntityType="Self.Document" />
+    <EntitySet Name="MainAdmins" EntityType="Self.MainAdmin" />
+    <EntitySet Name="Mamlatdars" EntityType="Self.Mamlatdar" />
+    <EntitySet Name="RegistrationUsers" EntityType="Self.RegistrationUser" />
+    <EntitySet Name="ServiceDetails" EntityType="Self.ServiceDetail" />
+    <EntitySet Name="ServiceExinfoes" EntityType="Self.ServiceExinfo" />
+    <EntitySet Name="Talatis" EntityType="Self.Talati" />
+    <EntitySet Name="Talukas" EntityType="Self.Taluka" />
+    <EntitySet Name="Villages" EntityType="Self.Village" />
+    <AssociationSet Name="FK__Collector__disid__276EDEB3" Association="Self.FK__Collector__disid__276EDEB3">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="Collector" EntitySet="Collectors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Collector__maid__286302EC" Association="Self.FK__Collector__maid__286302EC">
+      <End Role="MainAdmin" EntitySet="MainAdmins" />
+      <End Role="Collector" EntitySet="Collectors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mamlatdar__coid__2B3F6F97" Association="Self.FK__Mamlatdar__coid__2B3F6F97">
+      <End Role="Collector" EntitySet="Collectors" />
+      <End Role="Mamlatdar" EntitySet="Mamlatdars" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Taluka__coid__30F848ED" Association="Self.FK__Taluka__coid__30F848ED">
+      <End Role="Collector" EntitySet="Collectors" />
+      <End Role="Taluka" EntitySet="Talukas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__District__maid__29572725" Association="Self.FK__District__maid__29572725">
+      <End Role="MainAdmin" EntitySet="MainAdmins" />
+      <End Role="District" EntitySet="Districts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documents__maid__2A4B4B5E" Association="Self.FK__Documents__maid__2A4B4B5E">
+      <End Role="MainAdmin" EntitySet="MainAdmins" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ServiceDet__maid__2D27B809" Association="Self.FK__ServiceDet__maid__2D27B809">
+      <End Role="MainAdmin" EntitySet="MainAdmins" />
+      <End Role="ServiceDetails" EntitySet="ServiceDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ServiceExi__maid__2E1BDC42" Association="Self.FK__ServiceExi__maid__2E1BDC42">
+      <End Role="MainAdmin" EntitySet="MainAdmins" />
+      <End Role="ServiceExinfo" EntitySet="ServiceExinfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mamlatdar__talid__2C3393D0" Association="Self.FK__Mamlatdar__talid__2C3393D0">
+      <End Role="Taluka" EntitySet="Talukas" />
+      <End Role="Mamlatdar" EntitySet="Mamlatdars" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Talati__mltid__2F10007B" Association="Self.FK__Talati__mltid__2F10007B">
+      <End Role="Mamlatdar" EntitySet="Mamlatdars" />
+      <End Role="Talati" EntitySet="Talatis" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Village__mltid__31EC6D26" Association="Self.FK__Village__mltid__31EC6D26">
+      <End Role="Mamlatdar" EntitySet="Mamlatdars" />
+      <End Role="Village" EntitySet="Villages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Talati__vlid__300424B4" Association="Self.FK__Talati__vlid__300424B4">
+      <End Role="Village" EntitySet="Villages" />
+      <End Role="Talati" EntitySet="Talatis" />
+    </AssociationSet>
+    <FunctionImport Name="spCollectorINUP">
+      <Parameter Name="cofname" Mode="In" Type="String" />
+      <Parameter Name="comname" Mode="In" Type="String" />
+      <Parameter Name="colname" Mode="In" Type="String" />
+      <Parameter Name="maid" Mode="In" Type="Int32" />
+      <Parameter Name="comno" Mode="In" Type="String" />
+      <Parameter Name="coemail" Mode="In" Type="String" />
+      <Parameter Name="copass" Mode="In" Type="String" />
+      <Parameter Name="disid" Mode="In" Type="Int32" />
+      <Parameter Name="newcoid" Mode="In" Type="Int32" />
+      <Parameter Name="newdisid" Mode="In" Type="Int32" />
+      <Parameter Name="coid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spDeleteAllData">
+      <Parameter Name="TName" Mode="In" Type="String" />
+      <Parameter Name="Crit" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spDisJoin" ReturnType="Collection(EGovernanceDBModel.spDisJoin_Result)">
+      <Parameter Name="vlid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spDistrictINUP">
+      <Parameter Name="disname" Mode="In" Type="String" />
+      <Parameter Name="maid" Mode="In" Type="Int32" />
+      <Parameter Name="disid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spDocumentsINUP">
+      <Parameter Name="docname" Mode="In" Type="String" />
+      <Parameter Name="docdetail" Mode="In" Type="String" />
+      <Parameter Name="maid" Mode="In" Type="Int32" />
+      <Parameter Name="docid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertServiceData">
+      <Parameter Name="Tname" Mode="In" Type="String" />
+      <Parameter Name="Crit" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spMamlatdarINUP">
+      <Parameter Name="mltfname" Mode="In" Type="String" />
+      <Parameter Name="mltmname" Mode="In" Type="String" />
+      <Parameter Name="mltlname" Mode="In" Type="String" />
+      <Parameter Name="coid" Mode="In" Type="Int32" />
+      <Parameter Name="mltmno" Mode="In" Type="String" />
+      <Parameter Name="mltemail" Mode="In" Type="String" />
+      <Parameter Name="mltpass" Mode="In" Type="String" />
+      <Parameter Name="talid" Mode="In" Type="Int32" />
+      <Parameter Name="newmltid" Mode="In" Type="Int32" />
+      <Parameter Name="newtalid" Mode="In" Type="Int32" />
+      <Parameter Name="mltid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spRegistrationInsert">
+      <Parameter Name="fname" Mode="In" Type="String" />
+      <Parameter Name="mname" Mode="In" Type="String" />
+      <Parameter Name="lname" Mode="In" Type="String" />
+      <Parameter Name="rgender" Mode="In" Type="String" />
+      <Parameter Name="dob" Mode="In" Type="String" />
+      <Parameter Name="adhno" Mode="In" Type="String" />
+      <Parameter Name="mno" Mode="In" Type="String" />
+      <Parameter Name="emailid" Mode="In" Type="String" />
+      <Parameter Name="pass" Mode="In" Type="String" />
+      <Parameter Name="adres" Mode="In" Type="String" />
+      <Parameter Name="mac" Mode="In" Type="String" />
+      <Parameter Name="browsername" Mode="In" Type="String" />
+      <Parameter Name="vlid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spSelectAllData">
+      <Parameter Name="Tname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spSelectbyId">
+      <Parameter Name="Tname" Mode="In" Type="String" />
+      <Parameter Name="Crit" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spSelectUserDetails" ReturnType="Collection(EGovernanceDBModel.spSelectUserDetails_Result)">
+      <Parameter Name="rid" Mode="In" Type="String" />
+      <Parameter Name="veri" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spSelectUserServiceInfo" ReturnType="Collection(EGovernanceDBModel.spSelectUserServiceInfo_Result)">
+      <Parameter Name="vlid" Mode="In" Type="String" />
+      <Parameter Name="script" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spServiceDetailsINUP">
+      <Parameter Name="srddescription" Mode="In" Type="String" />
+      <Parameter Name="srddocumentids" Mode="In" Type="String" />
+      <Parameter Name="srdexinfoids" Mode="In" Type="String" />
+      <Parameter Name="srdname" Mode="In" Type="String" />
+      <Parameter Name="maid" Mode="In" Type="Int32" />
+      <Parameter Name="srdid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spServiceExinfoINUP">
+      <Parameter Name="srename" Mode="In" Type="String" />
+      <Parameter Name="maid" Mode="In" Type="Int32" />
+      <Parameter Name="sreid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spTalatiINUP">
+      <Parameter Name="tltfname" Mode="In" Type="String" />
+      <Parameter Name="tltmname" Mode="In" Type="String" />
+      <Parameter Name="tltlname" Mode="In" Type="String" />
+      <Parameter Name="mltid" Mode="In" Type="Int32" />
+      <Parameter Name="tltmno" Mode="In" Type="String" />
+      <Parameter Name="tltemail" Mode="In" Type="String" />
+      <Parameter Name="tltpass" Mode="In" Type="String" />
+      <Parameter Name="vlid" Mode="In" Type="Int32" />
+      <Parameter Name="newtltid" Mode="In" Type="Int32" />
+      <Parameter Name="newvlid" Mode="In" Type="Int32" />
+      <Parameter Name="tltid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spTalukaINUP">
+      <Parameter Name="talname" Mode="In" Type="String" />
+      <Parameter Name="coid" Mode="In" Type="Int32" />
+      <Parameter Name="talid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spupdateservices">
+      <Parameter Name="Tname" Mode="In" Type="String" />
+      <Parameter Name="rid" Mode="In" Type="String" />
+      <Parameter Name="remark" Mode="In" Type="String" />
+      <Parameter Name="statuscode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spVillageINUP">
+      <Parameter Name="vlname" Mode="In" Type="String" />
+      <Parameter Name="mltid" Mode="In" Type="Int32" />
+      <Parameter Name="vlid" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="spDisJoin_Result">
+    <Property Type="String" Name="vlname" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="talname" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="disname" Nullable="true" MaxLength="40" />
+  </ComplexType>
+  <ComplexType Name="spSelectUserDetails_Result">
+    <Property Type="Int32" Name="rid" Nullable="true" />
+    <Property Type="String" Name="sname" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="swname" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="remark" Nullable="true" />
+    <Property Type="String" Name="statuscode" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="appdate" Nullable="true" />
+    <Property Type="DateTime" Name="validity" Nullable="true" />
+    <Property Type="DateTime" Name="Issuedt" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spSelectUserServiceInfo_Result">
+    <Property Type="Int32" Name="rid" Nullable="true" />
+    <Property Type="String" Name="sname" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="swname" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="FullUserName" Nullable="false" MaxLength="92" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="rmno" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="remailid" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

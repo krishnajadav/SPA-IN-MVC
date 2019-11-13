@@ -1,0 +1,700 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProductInfo</title>
+  
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script src="https://unpkg.com/sweetalert@2.1.0/dist/sweetalert.min.js"></script>
+
+
+    <link href="~/Content/CustomStyle.css" rel="stylesheet" />
+    <script>
+
+
+        var Display, clear;
+
+        $(document).ready(function () {
+
+            var ddlCategory = $("#ddlDeleteCategory");
+            var upddlCategory = $("#upddlCategory");
+            var ddlProduct = $("#ddlProduct");
+
+            function binddropdown()
+            {
+              
+                $.ajax({
+                    url: '@Url.Action("GetProductsCategoryData", "Product")',
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data:"{}",
+                    success: function (response) {
+                        ddlCategory.empty().append('<option selected="selected" value="0">Please select Category</option>');
+
+
+                        $.each(response, function () {
+                            ddlCategory.append($("<option></option>").val(this['Text']).html(this['Text']));
+                        });
+
+
+
+                      
+
+                        $.each(response, function () {
+                            upddlCategory.append($("<option></option>").val(this['Text']).html(this['Text']));
+                        });
+
+                        ddlProduct.empty().append('<option selected="selected" value="0">Please select Product</option>');
+
+                        
+
+
+
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+
+            }
+
+            binddropdown();
+
+
+            $('#ProductTable').DataTable();
+
+
+            Display = function () {
+                var URL = '@Url.Action("GetProductsData", "Product")';
+
+                oTable = $('#ProductTable').DataTable({
+                    dom: 'Bfrtip',
+                    "bInfo": true,
+                    "bPaginate": true,
+                    buttons: [
+                        'excel', 'pdf', 'print'
+                    ],
+                    "processing": false,
+                    "serverSide": false,
+                    "bSort": false,
+                    "searching": true,
+                    "sAjaxSource": URL,
+                    "pageLength": 4,
+                    "bDestroy": true,
+                    "bLengthChange": true,
+                    "scrollX": true,
+                    "scrollY": ($(window).height() - 200),
+                    "pagingType": "full_numbers",
+                    "sEmptyTable": "Loading data from server",
+                    "fnServerData": function (sSource, aoData, fnCallback) {
+
+                        $.ajax({
+                            "dataType": 'json',
+                            "type": "POST",
+                            "url": sSource,
+                            "data": aoData,
+                            "success": fnCallback
+                        });
+                    },
+                    "columns": [
+                                      {
+
+                                          "sWidth": "5%",
+                                          "bSortable": true,
+                                          "sClass": "TextCenter ID",
+                                          "visible": false,
+                                          "render": function (data, type, row, meta) {
+
+                                              return (row[0])
+                                          }
+                                      },
+                                      {
+
+                                          "sWidth": "5%",
+                                          "sClass": "rightalign ",
+                                          "render": function (data, type, row, meta) {
+                                              return (row[1])
+                                          }
+                                      },
+                                       {
+
+                                           "sWidth": "10%",
+                                           "sClass": "rightalign TA_C",
+                                           "render": function (data, type, row, meta) {
+                                               return (row[2])
+                                           }
+                                       },
+                                          {
+
+                                              "sWidth": "5%",
+                                              "sClass": "rightalign ",
+                                              "render": function (data, type, row, meta) {
+
+
+
+                                                  return '<img src="/Content/Images/' + row[3] + '" class="SetImage">'
+                                              }
+                                          },
+                                             {
+
+                                                 "sWidth": "5%",
+                                                 "sClass": "rightalign ",
+                                                 "render": function (data, type, row, meta) {
+                                                     return (row[4])
+                                                 }
+                                             },
+                                                {
+
+                                                    "sWidth": "5%",
+                                                    "sClass": "rightalign ",
+                                                    "render": function (data, type, row, meta) {
+                                                        return (row[5])
+                                                    }
+                                                },
+                                                   {
+
+                                                       "sWidth": "5%",
+                                                       "sClass": "rightalign ",
+                                                       "render": function (data, type, row, meta) {
+                                                           return (row[6])
+                                                       }
+                                                   },
+
+
+
+
+                    ], "fnInitComplete": function (oSetting, json) {
+
+                    }
+
+                });
+            }
+
+
+            Display();
+
+            $("#btnSubmit").click(function () {
+
+
+                  var fileUpload = $("#upfile").get(0);
+                         var files = fileUpload.files;
+                  
+                         var fdata = new FormData();
+
+                         if (files.length == 0)
+                         {                         
+                             fdata.append("imgname", $('#imagedis').attr('value'));
+                         }
+                         else
+                         {
+                             for (var i = 0; i < files.length; i++) {
+                                 fdata.append('Image', files[i]);
+                             }
+                         }
+                                                              
+                               
+                                var supply="";
+
+                                $("input:checkbox[name=upsupplycity]:checked").each(function () {
+
+                                    supply = supply + "," + $(this).val();
+                               
+                                });
+
+                                var itemcity = supply.substring(1, supply.length);
+                               
+                               
+
+                fdata.append("id", $("#hdnID").val());
+                fdata.append("pname", $("#txtuppname").val());
+                fdata.append("pprice", $("#txtuppprice").val());
+                fdata.append("pcname", $("#upddlCategory option:selected").text());
+                fdata.append("pisdemand",$("input[name=upisdemand]:checked").val());
+                fdata.append("psupply", itemcity);
+
+                debugger;
+
+                $.ajax({
+                    url: '@Url.Action("InupProductMain", "Product")',
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fdata,
+                    success: function (result) {
+                        if (result == 1) {
+
+                            swal("Successfully Product Inserted!", "", "success", {
+                                button: "Close",
+                            });
+                            Display();
+                            clear();
+                            document.getElementById("defaultOpen").click();
+
+                        }
+                        else {
+
+                            swal("Product Not Inserted!", "", "error", {
+                                button: "Close",
+                            });
+                        }
+
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+
+
+
+            });
+
+
+
+
+
+
+             clear=function() {
+                $("#txtuppname").val("");
+                $("#txtuppprice").val("");
+                $("#upfile").val("");
+
+                $("#upddlCategory").val($("#upddlCategory option:first").val());
+              
+                $("input[name='upsupplycity']").prop('checked', false);
+
+                $("#imagedis").css("display", "none");
+
+                $("#btnSubmit").val("Insert");
+
+                $("#hdnID").val("0");
+
+                $("#disinup").text("Insert");
+
+            }
+
+
+
+           
+
+            $('#ProductTable tbody').on('click', 'tr', function () {
+               // alert(table.row(this).data());
+
+
+                var table = $('#ProductTable').DataTable();
+
+                var data = table.row(this).data();
+
+                $("#disinup").text("Update");
+
+                $("#hdnID").val(data[0]);
+
+                $("#txtuppname").val(data[1]);
+                $("#txtuppprice").val(data[2]);
+
+                $("#imagedis").attr("src", "/Content/Images/" + data[3]);
+                 
+                $('#imagedis').attr("value",data[3]);
+
+                $('#upddlCategory').val(data[5]);
+
+
+                if (data[4] =="True")
+                { $("input[name='upisdemand'][value='1']").prop('checked', true); } else { $("input[name='upisdemand'][value='0']").prop('checked', true); }
+
+
+                $("input[name='upsupplycity']").prop('checked', false);
+
+                var suppcity = data[6];
+
+                var stringArray = suppcity.split(',');
+
+
+                $.each(stringArray, function (index, value) {
+
+                    $("input[name='upsupplycity'][value='" + value + "']").prop('checked', true);
+
+                });
+
+                $("#imagedis").css("display", "block");
+
+                $("#inupbtn").val("Update");
+
+                $("#btnSubmit").val("Update");
+
+                document.getElementById("inupbtn").click();
+
+            });
+
+
+            $("#upfile").change(function (e) {
+
+                var fileName = e.target.files[0].name;
+                $("#imagedis").css("display", "block");
+                $("#imagedis").attr("src", "/Content/Images/" + fileName);
+
+            });
+
+            
+
+
+            $("#ddlDeleteCategory").change(function () {
+                var item = $(this);
+               
+                var productname = { "Pcname": item.val() };
+
+                $.ajax({
+                    url: '@Url.Action("GetProductsCategoriyWiseData", "Product")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8", // Not to set any content header
+                    processData: false, // Not to process data
+                    data: JSON.stringify(productname),
+                    dataType: "json",
+                    success: function (response) {
+                        ddlProduct.empty().append('<option selected="selected" value="0">Please select Product</option>');
+
+
+                        $.each(response, function () {
+                            ddlProduct.append($("<option></option>").val(this['Value']).html(this['Text']));
+                        });
+
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+
+
+            });
+
+
+            $("#btnDelete").click(function () {
+
+                var ID = $("#ddlProduct option:selected").val();
+                var pcname = $("#ddlDeleteCategory option:selected").val();
+
+                bootbox.confirm({
+                    title: "Please Confirm",
+                    message: "Are you sure to delete this record.",
+                    buttons: {
+                        cancel: {
+                            label: '<i class="fa fa-times"></i> Cancel'
+                        },
+                        confirm: {
+                            label: '<i class="fa fa-check"></i> Confirm'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result == true) {
+                            var data = { "ID": ID };
+                            $.ajax({
+                                url: '@Url.Action("deleteRecord", "Product")',
+                                type: "POST",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify(data),
+                                dataType: "json",
+                                success: function (response) {
+
+                                    if (response == 1) {
+                                        Display();
+                                        refresh(pcname);
+                                        swal("Successfully Product Deleted!", "", "success", {
+                                            button: "Close",
+                                        });
+                                        document.getElementById("defaultOpen").click();                                  
+
+                                    }
+                                    else {
+                                        swal("Product Not Deleted!", "", "error", {
+                                            button: "Close",
+                                        });
+
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+
+
+
+
+
+            });
+
+
+
+
+
+            function refresh(pcname) {
+                var productname = { "Pcname": pcname };
+
+                $.ajax({
+                    url: '@Url.Action("GetProductsCategoriyWiseData", "Product")',
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8", // Not to set any content header
+                    processData: false, // Not to process data
+                    data: JSON.stringify(productname),
+                    dataType: "json",
+                    success: function (response) {
+                        ddlProduct.empty().append('<option selected="selected" value="0">Please select Product</option>');
+
+
+                        $.each(response, function () {
+                            ddlProduct.append($("<option></option>").val(this['Value']).html(this['Text']));
+                        });
+
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+
+            }
+
+
+
+
+        });
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="row">
+
+
+
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'Products')" id="defaultOpen">Products</button>
+
+                    <button class="tablinks" onclick="openCity(event, 'Insertproduct')" id="inupbtn"><p id="disinup">Insert</p></button>
+
+                    <button class="tablinks" onclick="openCity(event, 'Deleteproduct')" id="deletetab">Delete</button>
+
+                </div>
+          
+
+
+    <div id="Products" class="tabcontent">
+       
+
+        <center>
+
+
+            <div class="col-md-12">
+                <table id="ProductTable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Product Name</td>
+                            <td>Product Price</td>
+                            <td>Product Image</td>
+                            <td>Product Demand</td>
+                            <td>Product Category</td>
+                            <td>Product Supply City</td>
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+
+
+
+        </center>
+
+
+
+
+
+    </div>
+
+    <div id="Insertproduct" class="tabcontent">
+     
+
+        <input type="hidden" id="hdnID" value="0" />
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+
+                <div class="form-group">
+                    <input type="text" id="txtuppname" placeholder="Product Name" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="txtuppprice" placeholder="Product Price" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <h4>Is Demand In Market ?</h4>
+                    <label class="radio-inline">
+                        <input type="radio" name="upisdemand" value="1">Yes
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" checked name="upisdemand" value="0">No
+                    </label>
+                </div>
+
+            </div>
+
+            <div class="col-md-1">
+            </div>
+
+            <div class="col-md-5">
+
+
+
+                <div class="form-group">
+                    <select id="upddlCategory" class="form-control"></select>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <img src="" alt="" height="50" width="75" id="imagedis">
+                    </div>
+
+                    <div class="col-md-9">
+
+                        <div class="form-group">
+                            <input type="file" class="form-control" id="upfile" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h4>Supply To City</h4>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="upsupplycity" value="Surat">Surat
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="upsupplycity" value="Vadodara">Vadodra
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="upsupplycity" value="Ahemdabad">Ahemdabad
+                    </label>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+        <div class="row">
+
+            <div class="col-md-3">
+
+                <input type="submit" id="btnSubmit" value="Insert" class="btn btn-primary">
+
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+     <div id="Deleteproduct" class="tabcontent">
+
+         <div class="row">
+
+             <div class="col-md-4">
+
+                 <div class="form-group">
+                     <select id="ddlDeleteCategory" class="form-control"></select>
+                 </div>
+
+             </div>
+
+             <div class="col-md-1">
+
+             </div>
+
+             <div class="col-md-4">
+
+                 <div class="form-group">
+                     <select id="ddlProduct" class="form-control"></select>
+                 </div>
+
+             </div>
+
+             <div class="col-md-3">
+
+                 <input type="submit" id="btnDelete" value="Delete" class="btn btn-primary">
+
+
+             </div>
+
+
+         </div>
+
+
+     </div>
+
+        </div>
+        </div>
+
+
+    <script>
+
+        function openCity(evt, cityName) {
+
+            if (cityName == "Products") { clear(); }
+
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        document.getElementById("defaultOpen").click();
+
+    </script>
+</body>
+</html>

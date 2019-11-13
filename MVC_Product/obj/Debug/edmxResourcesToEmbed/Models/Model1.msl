@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EGovernanceDBModelStoreContainer" CdmEntityContainer="EGovernanceDBEntities">
+    <EntitySetMapping Name="Collectors">
+      <EntityTypeMapping TypeName="EGovernanceDBModel.Collector">
+        <MappingFragment StoreEntitySet="Collector">
+          <ScalarProperty Name="coid" ColumnName="coid" />
+          <ScalarProperty Name="cofname" ColumnName="cofname" />
+          <ScalarProperty Name="comname" ColumnName="comname" />
+          <ScalarProperty Name="colname" ColumnName="colname" />
+          <ScalarProperty Name="comno" ColumnName="comno" />
+          <ScalarProperty Name="coemail" ColumnName="coemail" />
+          <ScalarProperty Name="copass" ColumnName="copass" />
+          <ScalarProperty Name="disid" ColumnName="disid" />
+          <ScalarProperty Name="maid" ColumnName="maid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Districts">
+      <EntityTypeMapping TypeName="EGovernanceDBModel.District">
+        <MappingFragment StoreEntitySet="District">
+          <ScalarProperty Name="disid" ColumnName="disid" />
+          <ScalarProperty Name="disname" ColumnName="disname" />
+          <ScalarProperty Name="maid" ColumnName="maid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="EGovernanceDBModel.Document">
+        <MappingFragment StoreEntitySet="Documents">
+          <ScalarProperty Name="docid" ColumnName="docid" />
+          <ScalarProperty Name="docname" ColumnName="docname" />
+          <ScalarProperty Name="docdetail" ColumnName="docdetail" />
+          <ScalarProperty Name="maid" ColumnName="maid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MainAdmins">
+      <EntityTypeMapping TypeName="EGovernanceDBModel.MainAdmin">
+        <MappingFragment StoreEntitySet="MainAdmin">
+          <ScalarProperty Name="maid" ColumnName="maid" />
+          <ScalarProperty Name="mafname" ColumnName="mafname" />
+          <ScalarProperty Name="mamname" ColumnName="mamname" />
+          <ScalarProperty Name="malname" ColumnName="malname" />
+          <ScalarProperty Name="mamno" ColumnName="mamno" />
+          <ScalarProperty Name="maemail" ColumnName="maemail" />
+          <ScalarProperty Name="mapass" ColumnName="mapass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mamlatdars">
+      <EntityTypeMapping TypeName="EGovernanceDBModel.Mamlatdar">
+        <MappingFragment StoreEntitySet="Mamlatdar">
+          <ScalarProperty Name="mltid" ColumnName="mltid" />
+          <ScalarProperty Name="mltfname" ColumnName="mltfname" />
+          <ScalarProperty Name="mltmname" ColumnName="mltmname" />
+          <ScalarProperty Name="mltlname" ColumnName="mltlname" />
+          <ScalarProperty Name="mltmno" ColumnName="mltmno" />
+          <ScalarProperty Name="mltemail" ColumnName="mltemail" />
+          <ScalarProperty Name="mltpass" ColumnName="mltpass" />
+          <ScalarProperty Name="talid" ColumnName="talid" />
+          <ScalarProperty Name="coid" ColumnName="coid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegistrationUsers">
+      <EntityTypeMapping TypeName="EGovernanceDBModel.RegistrationUser">
+        <MappingFragment StoreEntitySet="RegistrationUsers">
+          <ScalarProperty Name="rid" ColumnName="rid" />
+          <ScalarProperty Name="rfname" ColumnName="rfname" />
+          <ScalarProperty Name="rmname" ColumnName="rmname" />
+          <ScalarProperty Name="rlname" ColumnName="rlname" />
+          <ScalarProperty Name="rgender" ColumnName="rgender" />
+          <ScalarProperty Name="rdob" ColumnName="rdob" />
+          <ScalarProperty Name="radhno" ColumnName="radhno" />
+          <ScalarProperty Name="rmno" ColumnName="rmno" />
+          <ScalarProperty Name="remailid" ColumnName="remailid" />
+          <ScalarProperty Name="rpass" ColumnName="rpass" />
+          <ScalarProperty Name="radres" ColumnName="radres" />
+          <ScalarProperty Name="macaddress" ColumnName="macaddress" />
+          <ScalarProperty Name="browsername" ColumnName="browsername" />
+          <ScalarProperty Name="registerdatetime" ColumnName="registerdatetime" />
+          <ScalarProperty Name="vlid" ColumnName="vlid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceDetails">
+      <EntityTypeMapping TypeName="EGovernanceDBModel.ServiceDetail">
+        <MappingFragment StoreEntitySet="ServiceDetails">
+          <ScalarProperty Name="srdid" ColumnName="srdid" />
+          <ScalarProperty Name="srdname" ColumnName="srdname" />
+          <ScalarProperty Name="srddescription" ColumnName="srddescription" />
+          <ScalarProperty Name="srddocumentids" ColumnName="srddocumentids" />
+          <ScalarProperty Name="srdexinfoids" ColumnName="srdexinfoids" />
+          <ScalarProperty Name="maid" ColumnName="maid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceExinfoes">
+      <EntityTypeMapping TypeName="EGovernanceDBModel.ServiceExinfo">
+        <MappingFragment StoreEntitySet="ServiceExinfo">
+          <ScalarProperty Name="sreid" ColumnName="sreid" />
+          <ScalarProperty Name="srename" ColumnName="srename" />
+          <ScalarProperty Name="maid" ColumnName="maid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Talatis">
+      <EntityTypeMapping TypeName="EGovernanceDBModel.Talati">
+        <MappingFragment StoreEntitySet="Talati">
+          <ScalarProperty Name="tltid" ColumnName="tltid" />
+          <ScalarProperty Name="tltfname" ColumnName="tltfname" />
+          <ScalarProperty Name="tltmname" ColumnName="tltmname" />
+          <ScalarProperty Name="tltlname" ColumnName="tltlname" />
+          <ScalarProperty Name="tltmno" ColumnName="tltmno" />
+          <ScalarProperty Name="tltemail" ColumnName="tltemail" />
+          <ScalarProperty Name="tltpass" ColumnName="tltpass" />
+          <ScalarProperty Name="vlid" ColumnName="vlid" />
+          <ScalarProperty Name="mltid" ColumnName="mltid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Talukas">
+      <EntityTypeMapping TypeName="EGovernanceDBModel.Taluka">
+        <MappingFragment StoreEntitySet="Taluka">
+          <ScalarProperty Name="talid" ColumnName="talid" />
+          <ScalarProperty Name="talname" ColumnName="talname" />
+          <ScalarProperty Name="coid" ColumnName="coid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Villages">
+      <EntityTypeMapping TypeName="EGovernanceDBModel.Village">
+        <MappingFragment StoreEntitySet="Village">
+          <ScalarProperty Name="vlid" ColumnName="vlid" />
+          <ScalarProperty Name="vlname" ColumnName="vlname" />
+          <ScalarProperty Name="mltid" ColumnName="mltid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spCollectorINUP" FunctionName="EGovernanceDBModel.Store.spCollectorINUP" />
+    <FunctionImportMapping FunctionImportName="spDeleteAllData" FunctionName="EGovernanceDBModel.Store.spDeleteAllData" />
+    <FunctionImportMapping FunctionImportName="spDisJoin" FunctionName="EGovernanceDBModel.Store.spDisJoin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EGovernanceDBModel.spDisJoin_Result">
+          <ScalarProperty Name="vlname" ColumnName="vlname" />
+          <ScalarProperty Name="talname" ColumnName="talname" />
+          <ScalarProperty Name="disname" ColumnName="disname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spDistrictINUP" FunctionName="EGovernanceDBModel.Store.spDistrictINUP" />
+    <FunctionImportMapping FunctionImportName="spDocumentsINUP" FunctionName="EGovernanceDBModel.Store.spDocumentsINUP" />
+    <FunctionImportMapping FunctionImportName="spInsertServiceData" FunctionName="EGovernanceDBModel.Store.spInsertServiceData" />
+    <FunctionImportMapping FunctionImportName="spMamlatdarINUP" FunctionName="EGovernanceDBModel.Store.spMamlatdarINUP" />
+    <FunctionImportMapping FunctionImportName="spRegistrationInsert" FunctionName="EGovernanceDBModel.Store.spRegistrationInsert" />
+    <FunctionImportMapping FunctionImportName="spSelectAllData" FunctionName="EGovernanceDBModel.Store.spSelectAllData" />
+    <FunctionImportMapping FunctionImportName="spSelectbyId" FunctionName="EGovernanceDBModel.Store.spSelectbyId" />
+    <FunctionImportMapping FunctionImportName="spSelectUserDetails" FunctionName="EGovernanceDBModel.Store.spSelectUserDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EGovernanceDBModel.spSelectUserDetails_Result">
+          <ScalarProperty Name="rid" ColumnName="rid" />
+          <ScalarProperty Name="sname" ColumnName="sname" />
+          <ScalarProperty Name="swname" ColumnName="swname" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="statuscode" ColumnName="statuscode" />
+          <ScalarProperty Name="appdate" ColumnName="appdate" />
+          <ScalarProperty Name="validity" ColumnName="validity" />
+          <ScalarProperty Name="Issuedt" ColumnName="Issuedt" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spSelectUserServiceInfo" FunctionName="EGovernanceDBModel.Store.spSelectUserServiceInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EGovernanceDBModel.spSelectUserServiceInfo_Result">
+          <ScalarProperty Name="rid" ColumnName="rid" />
+          <ScalarProperty Name="sname" ColumnName="sname" />
+          <ScalarProperty Name="swname" ColumnName="swname" />
+          <ScalarProperty Name="FullUserName" ColumnName="FullUserName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="rmno" ColumnName="rmno" />
+          <ScalarProperty Name="remailid" ColumnName="remailid" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spServiceDetailsINUP" FunctionName="EGovernanceDBModel.Store.spServiceDetailsINUP" />
+    <FunctionImportMapping FunctionImportName="spServiceExinfoINUP" FunctionName="EGovernanceDBModel.Store.spServiceExinfoINUP" />
+    <FunctionImportMapping FunctionImportName="spTalatiINUP" FunctionName="EGovernanceDBModel.Store.spTalatiINUP" />
+    <FunctionImportMapping FunctionImportName="spTalukaINUP" FunctionName="EGovernanceDBModel.Store.spTalukaINUP" />
+    <FunctionImportMapping FunctionImportName="spupdateservices" FunctionName="EGovernanceDBModel.Store.spupdateservices" />
+    <FunctionImportMapping FunctionImportName="spVillageINUP" FunctionName="EGovernanceDBModel.Store.spVillageINUP" />
+  </EntityContainerMapping>
+</Mapping>
